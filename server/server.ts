@@ -16,8 +16,9 @@ server.use('/api/v1/', logRouter)
 server.use('/api/v1/snapshots', snapshotRouter)
 
 server.post('/test', BodyValidator.CreateLogGroup, async (req, res) =>{
+  console.log(process.env.NODE_ENV)
   res.status(200)
-  res.send("Yippy I O")
+  res.send(process.env.NODE_ENV)
 })
 
 server.post('/api/v1/reset', async (req, res) =>{
