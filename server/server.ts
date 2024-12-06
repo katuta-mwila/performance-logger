@@ -15,9 +15,11 @@ server.use(express.json())
 server.use('/api/v1/', logRouter)
 server.use('/api/v1/snapshots', snapshotRouter)
 
-server.post('/test', async (req, res) =>{
-  console.log(process.env.NODE_ENV)
+server.get('/test', async (req, res) =>{
+  console.log(process.env)
+  console.log(process.env.PORT)
   res.status(200)
+
   res.send(process.env.NODE_ENV)
 })
 
