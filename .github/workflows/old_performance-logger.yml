@@ -6,7 +6,7 @@ name: Build and deploy Node.js app to Azure Web App - performance-logger
 on:
   push:
     branches:
-      - demo
+      - old
   workflow_dispatch:
 
 jobs:
