@@ -20,7 +20,7 @@ server.get('/test', async (req, res) =>{
   console.log(process.env.PORT)
   res.status(200)
 
-  res.send(process.env.NODE_ENV)
+  res.send(process.env.NODE_ENV ?? "NODE_ENV NOT FOUND")
 })
 
 server.post('/api/v1/reset', async (req, res) =>{
