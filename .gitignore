@@ -28,3 +28,4 @@ Procfile
 docker-compose.yml
 
 .docker
+.vercel
