@@ -26,3 +26,5 @@ olddockfile.old
 Procfile
 
 docker-compose.yml
+
+.docker
