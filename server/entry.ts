@@ -4,7 +4,6 @@ import express from 'express'
 
 import logRouter from './routes/logRouter.ts'
 import errorHandler from './middleware/errorHandler.ts'
-import BodyValidator from './middleware/BodyValidator.ts'
 import { seed } from './db/seeds/logGroups.js'
 import connection from './db/connection.ts'
 import snapshotRouter from './routes/snapshotRouter.ts'

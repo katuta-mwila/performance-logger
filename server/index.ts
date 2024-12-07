@@ -1,4 +1,4 @@
-import server from './server.ts'
+import server from './entry.ts'
 
 const PORT = process.env.PORT || 3001
 
