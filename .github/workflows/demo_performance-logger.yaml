@@ -7,7 +7,7 @@ name: Build and deploy Node.js app to Azure Web App - performance-logger
 on:
   push:
     branches:
-      - demo
+      - notdemo
   workflow_dispatch:
 
 # Optional: environment variables can be injected here

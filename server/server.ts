@@ -17,7 +17,7 @@ server.use('/api/v1/snapshots', snapshotRouter)
 
 server.get('/test', async (req, res) =>{
   console.log(process.env)
-  console.log(process.env.PORT)
+  console.log(process.env.NODE_ENV)
   res.status(200)
 
   res.send(process.env.NODE_ENV ?? "NODE_ENV NOT FOUND")
