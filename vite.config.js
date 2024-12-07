@@ -8,6 +8,7 @@ export default defineConfig({
     commonjsOptions: { transformMixedEsModules: true }
   },  
   server: {
+    host: true,
     proxy: {
       '/api': 'http://localhost:3001',
     },

@@ -51,8 +51,9 @@ export function Dropdown({beforeDropdownClick, buttonText, children, className, 
     onKeyDown(e, dropdownOpen)
   }
 
-  const onBlur = () =>{
-    setTimeout(() => setDropdownOpen(false), 100)
+  const onBlur = (e: React.FocusEvent<HTMLDivElement, Element>) =>{
+    if (e.relatedTarget && e.relatedTarget.closest(`#${contentId.current}`) != null) return
+    setDropdownOpen(false)
   }
 
   return <div id={id} className={cls('sf-dropdown', className, dropdownOpen ? 'sf-dropdown-open' : 'sf-dropdown-closed')}>

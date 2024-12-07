@@ -1,0 +1,15 @@
+services:
+  server:
+    image: performance-logger-1.0.0
+    build:
+      dockerfile: Dockerfile
+      context: ./
+    volumes:
+      - pl_db:/app/storage
+      - snapshots:/app/server/snapshots
+    container_name: performance_logger
+    ports:
+      - 3001:3001
+volumes:
+  pl_db:
+  snapshots:

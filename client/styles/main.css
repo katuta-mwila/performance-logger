@@ -58,7 +58,7 @@ footer{
 
 .green-button{
   background-color: var(--header-bg);
-  color: rgb(241, 241, 241);
+  color: white;
   font-weight: 600;
   padding: 10px;
   border: 1px solid rgb(167, 167, 167);

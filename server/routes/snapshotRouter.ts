@@ -50,7 +50,7 @@ async function loadSnapshot(fileName: string): Promise<Snapshot>{
   
 }
 
-(async function(){
+/*(async function(){
   const files = await fs.readdir(snapshotPath)
   if (files.length === 0){
     console.log("Creating snapshot")
@@ -66,7 +66,7 @@ async function loadSnapshot(fileName: string): Promise<Snapshot>{
     console.log("Creating snapshot")
     createSnapshot()
   }
-})()
+})()*/
 
 
 snapshotRouter.get('/', async (req, res) =>{
@@ -114,7 +114,7 @@ snapshotRouter.post('/', async (req, res) =>{
       unit: snapGroup.unit
     }, 'id')
 
-    console.log(result)
+    //console.log(result)
 
     const queryRecords = snapGroup.logRecords.map(lr =>{
       return {

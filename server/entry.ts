@@ -1,9 +1,9 @@
-import express from 'express'
 import * as Path from 'node:path'
+import { formatDate } from 'date-fns'
+import express from 'express'
 
 import logRouter from './routes/logRouter.ts'
 import errorHandler from './middleware/errorHandler.ts'
-import BodyValidator from './middleware/BodyValidator.ts'
 import { seed } from './db/seeds/logGroups.js'
 import connection from './db/connection.ts'
 import snapshotRouter from './routes/snapshotRouter.ts'
@@ -15,9 +15,13 @@ server.use(express.json())
 server.use('/api/v1/', logRouter)
 server.use('/api/v1/snapshots', snapshotRouter)
 
-server.post('/test', BodyValidator.CreateLogGroup, async (req, res) =>{
+server.get('/test', async (req, res) =>{
+  console.log(process.env)
+  console.log(process.env.NODE_ENV)
+  formatDate(new Date(), 'yyyy')
   res.status(200)
-  res.send("Yippy I O")
+
+  res.send(process.env.NODE_ENV ?? "NODE_ENV NOT FOUND")
 })
 
 server.post('/api/v1/reset', async (req, res) =>{

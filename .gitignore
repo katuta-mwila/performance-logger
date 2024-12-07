@@ -18,3 +18,13 @@ coverage/*
 
 # Build directory
 /dist
+
+Dockerfile
+
+olddockfile.old
+
+Procfile
+
+docker-compose.yml
+
+.docker
