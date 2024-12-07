@@ -1,5 +1,6 @@
-import express from 'express'
 import * as Path from 'node:path'
+import { formatDate } from 'date-fns'
+import express from 'express'
 
 import logRouter from './routes/logRouter.ts'
 import errorHandler from './middleware/errorHandler.ts'
@@ -18,6 +19,7 @@ server.use('/api/v1/snapshots', snapshotRouter)
 server.get('/test', async (req, res) =>{
   console.log(process.env)
   console.log(process.env.NODE_ENV)
+  formatDate(new Date(), 'yyyy')
   res.status(200)
 
   res.send(process.env.NODE_ENV ?? "NODE_ENV NOT FOUND")
