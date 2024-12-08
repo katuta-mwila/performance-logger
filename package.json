@@ -14,7 +14,7 @@
     "dev": "run-p dev:client dev:server",
     "dev:client": "vite",
     "dev:server": "tsx watch server/index.ts",
-    "build": "NODE_ENV=production run-s build:client build:server migrate",
+    "build": "NODE_ENV=production run-s build:client build:server",
     "build:client": "vite build --outDir api",
     "build:server": "esbuild --packages=external --platform=node --format=esm --outfile=api/server.js --bundle server/index.ts",
     "lint": "eslint --ext .js,.jsx,.ts,.tsx .",
