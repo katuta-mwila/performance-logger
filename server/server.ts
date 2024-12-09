@@ -32,12 +32,12 @@ server.post('/api/v1/reset', async (req, res) =>{
 
 server.use(errorHandler)
 
-/*if (process.env.NODE_ENV === 'production') {
+if (process.env.NODE_ENV === 'production') {
   server.use(express.static(Path.resolve('public')))
-  server.use('/assets', express.static(Path.resolve('./api/assets')))
+  server.use('/assets', express.static(Path.resolve('./dist/assets')))
   server.get('*wildcard', (req, res) => {
-    res.sendFile(Path.resolve('./api/index.html'))
+    res.sendFile(Path.resolve('./dist/index.html'))
   })
-}*/
+}
 
 export default server

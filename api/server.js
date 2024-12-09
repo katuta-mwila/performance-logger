@@ -817,7 +817,7 @@ async function errorHandler(err, req, res, next) {
   }
   const pd = ProblemDetails.UnknownError();
   res.status(pd.statusCode);
-  res.json(pd);
+  res.json(err);
 }
 
 // randomDateTime.js
@@ -888,9 +888,7 @@ function generateRandomRecords(groupId, n, seedValue, deltaMin, deltaMax, intege
   return records;
 }
 async function seed(knex2) {
-  await knex2("logGroup").del().whereNot({ id: 1 });
-  await knex2.raw("UPDATE sqlite_sequence SET seq = 0 WHERE name = 'logGroup'");
-  await knex2.raw("UPDATE sqlite_sequence SET seq = 0 WHERE name = 'logRecord'");
+  await knex2("logGroup").del();
   for (const group of groups) {
     await knex2("logGroup").insert(group);
     const records = RecordBuilders[group.name]();
@@ -1001,9 +999,9 @@ server.post("/api/v1/reset", async (req, res) => {
 server.use(errorHandler);
 if (process.env.NODE_ENV === "production") {
   server.use(express.static(Path2.resolve("public")));
-  server.use("/assets", express.static(Path2.resolve("./api/assets")));
+  server.use("/assets", express.static(Path2.resolve("./dist/assets")));
   server.get("*wildcard", (req, res) => {
-    res.sendFile(Path2.resolve("./api/index.html"));
+    res.sendFile(Path2.resolve("./dist/index.html"));
   });
 }
 var server_default = server;
