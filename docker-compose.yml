@@ -9,7 +9,7 @@ services:
       - snapshots:/app/server/snapshots
     container_name: performance_logger
     ports:
-      - 3001:3001
+      - 3010:3001
 volumes:
   pl_db:
   snapshots:

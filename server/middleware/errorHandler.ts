@@ -16,5 +16,5 @@ export default async function errorHandler(err: unknown, req: Request, res: Resp
   }
   const pd = ProblemDetails.UnknownError()
   res.status(pd.statusCode)
-  res.json(pd)
+  res.json(err)
 }

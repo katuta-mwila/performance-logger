@@ -71,9 +71,7 @@ function generateRandomRecords(groupId, n, seedValue, deltaMin, deltaMax, intege
 }
 
 export async function seed(knex){
-  await knex('logGroup').del().whereNot({id: 1})
-  await knex.raw("UPDATE sqlite_sequence SET seq = 0 WHERE name = 'logGroup'");
-  await knex.raw("UPDATE sqlite_sequence SET seq = 0 WHERE name = 'logRecord'");
+  await knex('logGroup').del()
 
   for (const group of groups){
     await knex('logGroup').insert(group)

@@ -12,9 +12,15 @@ import knex from "knex";
 // server/db/knexfile.js
 import * as Path from "node:path";
 import * as URL from "node:url";
+import dotenv from "dotenv";
+if (process.env.NODE_ENV === "migrations")
+  dotenv.config({ path: "../../.env" });
+else {
+  dotenv.config({ path: ".env" });
+}
 var __filename = URL.fileURLToPath(import.meta.url);
 var __dirname = Path.dirname(__filename);
-var knexfile_default = {
+var config = {
   development: {
     client: "sqlite3",
     useNullAsDefault: true,
@@ -42,20 +48,28 @@ var knexfile_default = {
     }
   },
   production: {
-    client: "sqlite3",
-    useNullAsDefault: true,
-    connection: {
-      filename: "../../storage/prod.sqlite3"
-    },
+    client: "pg",
+    connection: process.env.DATABASE_URL,
+    /*connection: {
+      host: process.env.PGHOST,
+      database: process.env.PGDATABASE,
+      user: process.env.PGUSER,
+      password: process.env.PGPASSWORD,
+    },*/
     pool: {
-      afterCreate: (conn, cb) => conn.run("PRAGMA foreign_keys = ON", cb)
+      min: 2,
+      max: 10
+    },
+    migrations: {
+      tableName: "knex_migrations"
     }
   }
 };
+config.migrations = config.production;
+var knexfile_default = config;
 
 // server/db/connection.ts
-var env = process.env.NODE_ENV || "development";
-var connection = knex(knexfile_default[env]);
+var connection = knex(knexfile_default["production"]);
 var connection_default = connection;
 
 // Util.ts
@@ -987,9 +1001,9 @@ server.post("/api/v1/reset", async (req, res) => {
 server.use(errorHandler);
 if (process.env.NODE_ENV === "production") {
   server.use(express.static(Path2.resolve("public")));
-  server.use("/assets", express.static(Path2.resolve("./dist/assets")));
+  server.use("/assets", express.static(Path2.resolve("./api/assets")));
   server.get("*wildcard", (req, res) => {
-    res.sendFile(Path2.resolve("./dist/index.html"));
+    res.sendFile(Path2.resolve("./api/index.html"));
   });
 }
 var server_default = server;

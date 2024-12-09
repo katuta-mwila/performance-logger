@@ -1,10 +1,17 @@
 import * as Path from 'node:path'
 import * as URL from 'node:url'
+import dotenv from 'dotenv'
+
+if (process.env.NODE_ENV === 'migrations')
+  dotenv.config({path: '../../.env'})
+else{
+  dotenv.config({path: '.env'})
+}
 
 const __filename = URL.fileURLToPath(import.meta.url)
 const __dirname = Path.dirname(__filename)
 
-export default {
+const config = {
   development: {
     client: 'sqlite3',
     useNullAsDefault: true,
@@ -34,13 +41,24 @@ export default {
   },
 
   production: {
-    client: 'sqlite3',
-    useNullAsDefault: true,
-    connection: {
-      filename: '../../storage/prod.sqlite3',
-    },
+    client: 'pg',
+    connection: process.env.DATABASE_URL,
+    /*connection: {
+      host: process.env.PGHOST,
+      database: process.env.PGDATABASE,
+      user: process.env.PGUSER,
+      password: process.env.PGPASSWORD,
+    },*/
     pool: {
-      afterCreate: (conn, cb) => conn.run('PRAGMA foreign_keys = ON', cb),
+      min: 2,
+      max: 10
     },
+    migrations: {
+      tableName: 'knex_migrations'
+    }
   },
 }
+
+config.migrations = config.production
+
+export default config

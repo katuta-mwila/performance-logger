@@ -5,5 +5,12 @@
           "source": "/(.*)",
           "destination": "/api/server"
       }
+  ],
+  "redirects": [
+    {
+      "source": "/server.js",
+      "destination": "/"
+    }
+    
   ]
 }
