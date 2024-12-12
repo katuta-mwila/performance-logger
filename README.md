@@ -39,3 +39,12 @@ The website was deployed using the cloud service [Vercel](https://vercel.com/).
 # Links
 * [Demo Website](https://performance-logger-demo.vercel.app/)
 * [Official Website](https://performance-logger.vercel.app/)
+
+# Examples
+Data showing amount of steps per day
+
+![Steps per day](https://i.gyazo.com/4ca88b355189f07e9706e4ab954ee0c6.png)
+
+Same data expect grouped by month
+
+![Steps per day grouped by month](https://i.gyazo.com/93b7d6b6e4e834ec2f5ae72d3893772d.png)
