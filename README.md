@@ -35,3 +35,7 @@ The website was deployed using the cloud service [Vercel](https://vercel.com/).
 * How to use Knex and PostgreSQL to store persistent data
 * How to deploy a NodeJS application to vercel
 * Using Auth0 as the authentication provider
+
+# Links
+[Demo Website](https://performance-logger-demo.vercel.app/)
+[Official Website](https://performance-logger.vercel.app/)
